@@ -16,6 +16,6 @@ public class GrupoModeloEdital {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToOne
-    public List<ModalidadesEdital> editais;
+    @OneToMany
+    private List<ModalidadesEdital> editais;
 }

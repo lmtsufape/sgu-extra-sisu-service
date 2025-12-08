@@ -16,7 +16,7 @@ public class Modalidade {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
-    String nome;
-    String descricao;
+    private Long id;
+    private String nome;
+    private String descricao;
 }

@@ -15,8 +15,8 @@ import lombok.Setter;
 @NoArgsConstructor
 public class EditalExtraSisu extends GrupoModeloEdital {
     
-    String nome;
-    String pdf;
-    LocalDateTime dataInscricao;
-    LocalDateTime dataFinalizacao;
+    private String nome;
+    private String pdf;
+    private LocalDateTime dataInscricao;
+    private LocalDateTime dataFinalizacao;
 }
