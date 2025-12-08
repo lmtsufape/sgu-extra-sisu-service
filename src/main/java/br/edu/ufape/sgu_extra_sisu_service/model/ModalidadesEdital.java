@@ -19,8 +19,8 @@ public class ModalidadesEdital {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
-    Long edital_id;
+    private Long id;
+    private Long edital_id;
 
     @OneToMany
     private List<Modalidade> modalidades;

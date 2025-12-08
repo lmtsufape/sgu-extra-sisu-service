@@ -19,12 +19,12 @@ public class Publicacao {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
-    String nome;
-    String status;
-    String pdf;
-    String texto;
-    LocalDateTime dataPublicacao;
+    private Long id;
+    private String nome;
+    private String status;
+    private String pdf;
+    private String texto;
+    private LocalDateTime dataPublicacao;
     @ManyToOne
     private EditalExtraSisu edital;
 }
