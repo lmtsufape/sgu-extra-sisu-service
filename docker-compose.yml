@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  sgu-extra-sisu-db:
+    image: postgres:16.0
+    container_name: sgu-extra-sisu-db
+    environment:
+      - POSTGRES_DB=sgu_extra_sisu_db    
+      - POSTGRES_USER=postgres    
+      - POSTGRES_PASSWORD=55555
+    ports:
+      - "5436:5432"            
+    restart: always
