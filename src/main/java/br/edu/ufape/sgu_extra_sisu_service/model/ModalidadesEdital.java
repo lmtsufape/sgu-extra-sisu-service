@@ -6,7 +6,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,12 +18,18 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ModalidadesEdital {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long edital_id;
 
-    @OneToMany
+    private Long editalId;
+
+    @ManyToMany
+    @JoinTable(
+        name = "modalidades_edital_modalidade",
+        joinColumns = @JoinColumn(name = "modalidades_edital_id"),
+        inverseJoinColumns = @JoinColumn(name = "modalidade_id")
+    )
     private List<Modalidade> modalidades;
 }
