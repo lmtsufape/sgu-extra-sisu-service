@@ -1,13 +1,55 @@
-version: '3.8'
+version: '3.9'
 
 services:
+  sgu-extra-sisu-service:
+    image: sgu-extra-sisu-service
+    build: .
+    container_name: sgu-extra-sisu-service
+    ports:
+      - "8085:8085"
+    command: mvn spring-boot:run 
+    networks:
+      - sgu-networks
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SPRING_DATASOURCE_URL: jdbc:postgresql://sgu-extra-sisu-db:5432/sgu_extra_sisu_db
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: 55555
+      SPRING_RABBITMQ_HOST: rabbitmq
+      SPRING_RABBITMQ_PORT: 5672
+      SPRING_RABBITMQ_USERNAME: guest
+      SPRING_RABBITMQ_PASSWORD: guest
+      SPRING_CONFIG_IMPORT: optional:configserver:http://config-service:8888
+      CONFIG_SERVER_URI: http://config-service:8888
+    depends_on:
+      sgu-extra-sisu-db:
+        condition: service_healthy
+
   sgu-extra-sisu-db:
     image: postgres:16.0
     container_name: sgu-extra-sisu-db
-    environment:
-      - POSTGRES_DB=sgu_extra_sisu_db    
-      - POSTGRES_USER=postgres    
-      - POSTGRES_PASSWORD=55555
-    ports:
-      - "5436:5432"            
     restart: always
+    environment:
+      POSTGRES_DB: sgu_extra_sisu_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 55555
+      TZ: America/Sao_Paulo
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d sgu_extra_sisu_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    ports:
+      - "5437:5432"
+    networks:
+      - sgu-networks
+    volumes:
+      - extra-sisu-db-data:/var/lib/postgresql/data
+
+volumes:
+  extra-sisu-db-data:
+    driver: local
+
+networks:
+  sgu-networks:
+    external: true
