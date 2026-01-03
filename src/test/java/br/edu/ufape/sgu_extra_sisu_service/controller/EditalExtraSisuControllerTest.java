@@ -45,14 +45,14 @@ class EditalExtraSisuControllerTest {
     @BeforeEach
     void setup() {
         requestValido = new EditalRequest();
-        requestValido.setNome("Edital 2025.1");
+        requestValido.setTitulo("Edital 2025.1");
         requestValido.setPdf("edital.pdf");
         requestValido.setDataInscricao(LocalDateTime.now().plusDays(1));
         requestValido.setDataFinalizacao(LocalDateTime.now().plusDays(10));
 
         editalSalvo = new EditalExtraSisu();
         editalSalvo.setId(1L);
-        editalSalvo.setNome("Edital 2025.1");
+        editalSalvo.setTitulo("Edital 2025.1");
         editalSalvo.setPdf("edital.pdf");
         editalSalvo.setDataInscricao(requestValido.getDataInscricao());
         editalSalvo.setDataFinalizacao(requestValido.getDataFinalizacao());
@@ -127,7 +127,7 @@ class EditalExtraSisuControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(requestValido)))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.nome").value("Edital 2025.1"));
+                .andExpect(jsonPath("$.titulo").value("Edital 2025.1"));
     }
 
     // TESTES DE DELETE

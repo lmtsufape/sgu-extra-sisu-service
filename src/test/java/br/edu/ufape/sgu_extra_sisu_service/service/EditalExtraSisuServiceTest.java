@@ -33,7 +33,7 @@ class EditalExtraSisuServiceTest {
     void setup() {
         editalValido = new EditalExtraSisu();
         editalValido.setId(1L);
-        editalValido.setNome("Edital Teste 2025");
+        editalValido.setTitulo("Edital Teste 2025");
         editalValido.setPdf("link-do-pdf.com");
         editalValido.setDataInscricao(LocalDateTime.now()); 
         editalValido.setDataFinalizacao(LocalDateTime.now().plusDays(10));
@@ -47,7 +47,7 @@ class EditalExtraSisuServiceTest {
         EditalExtraSisu salvo = service.salvar(editalValido);
 
         assertNotNull(salvo);
-        assertEquals("Edital Teste 2025", salvo.getNome());
+        assertEquals("Edital Teste 2025", salvo.getTitulo());
         
         verify(repository, times(1)).save(any(EditalExtraSisu.class));
     }

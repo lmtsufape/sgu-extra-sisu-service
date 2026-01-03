@@ -28,7 +28,7 @@ class EditalExtraSisuServiceIntegrationTest {
     @Test
     void salvarEditalNoBancoDeDados() {
         EditalExtraSisu novoEdital = new EditalExtraSisu();
-        novoEdital.setNome("Edital Real 2025");
+        novoEdital.setTitulo("Edital Real 2025");
         novoEdital.setPdf("arquivo.pdf");
         novoEdital.setDataInscricao(LocalDateTime.now());
         novoEdital.setDataFinalizacao(LocalDateTime.now().plusDays(5));
@@ -39,13 +39,13 @@ class EditalExtraSisuServiceIntegrationTest {
         assertEquals(1, repository.count()); 
         
         EditalExtraSisu doBanco = repository.findById(salvo.getId()).get();
-        assertEquals("Edital Real 2025", doBanco.getNome());
+        assertEquals("Edital Real 2025", doBanco.getTitulo());
     }
 
     @Test
     void naoDeveSalvarEditalComDatasInvalidas() {
         EditalExtraSisu editalInvalido = new EditalExtraSisu();
-        editalInvalido.setNome("Edital Falho");
+        editalInvalido.setTitulo("Edital Falho");
         editalInvalido.setDataInscricao(LocalDateTime.now());
         editalInvalido.setDataFinalizacao(LocalDateTime.now().minusDays(1));
 
