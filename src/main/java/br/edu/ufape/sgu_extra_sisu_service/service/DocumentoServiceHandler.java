@@ -2,7 +2,7 @@ package br.edu.ufape.sgu_extra_sisu_service.service;
 
 import br.edu.ufape.sgu_extra_sisu_service.controller.request.DocumentoRequest;
 import br.edu.ufape.sgu_extra_sisu_service.controller.response.DocumentoResponse;
-import br.edu.ufape.sgu_extra_sisu_service.editais.DocumentoServiceClient;
+import br.edu.ufape.sgu_extra_sisu_service.client.DocumentoServiceClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

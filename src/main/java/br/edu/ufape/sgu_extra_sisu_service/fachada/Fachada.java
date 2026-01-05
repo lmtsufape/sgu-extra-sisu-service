@@ -2,9 +2,9 @@ package br.edu.ufape.sgu_extra_sisu_service.fachada;
 
 import br.edu.ufape.sgu_extra_sisu_service.controller.request.*;
 import br.edu.ufape.sgu_extra_sisu_service.controller.response.*;
-import br.edu.ufape.sgu_extra_sisu_service.editais.DataEtapaServiceClient;
-import br.edu.ufape.sgu_extra_sisu_service.editais.DocumentoServiceClient;
-import br.edu.ufape.sgu_extra_sisu_service.editais.TipoEditalServiceClient;
+import br.edu.ufape.sgu_extra_sisu_service.client.DataEtapaServiceClient;
+import br.edu.ufape.sgu_extra_sisu_service.client.DocumentoServiceClient;
+import br.edu.ufape.sgu_extra_sisu_service.client.TipoEditalServiceClient;
 import br.edu.ufape.sgu_extra_sisu_service.service.EtapaServiceHandler;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

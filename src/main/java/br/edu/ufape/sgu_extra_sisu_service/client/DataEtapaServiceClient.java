@@ -1,4 +1,4 @@
-package br.edu.ufape.sgu_extra_sisu_service.editais;
+package br.edu.ufape.sgu_extra_sisu_service.client;
 
 import br.edu.ufape.sgu_extra_sisu_service.controller.request.DataEtapaRequest;
 import br.edu.ufape.sgu_extra_sisu_service.controller.response.DataEtapaResponse;

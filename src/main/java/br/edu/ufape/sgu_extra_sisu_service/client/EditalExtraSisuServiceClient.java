@@ -1,4 +1,4 @@
-package br.edu.ufape.sgu_extra_sisu_service.editais;
+package br.edu.ufape.sgu_extra_sisu_service.client;
 
 import br.edu.ufape.sgu_extra_sisu_service.comunicacao.dto.edital.EditalExtraSisuDTO;
 import br.edu.ufape.sgu_extra_sisu_service.model.EditalExtraSisu;
@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
-import java.util.Optional;
 
 @FeignClient(name = "sgu-editais-service")
 public interface EditalExtraSisuServiceClient {
