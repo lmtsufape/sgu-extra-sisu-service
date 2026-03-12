@@ -1,6 +1,6 @@
 ARG BASE_IMAGE=eclipse-temurin:25-jdk-noble
 
-FROM ${BASE-IMAGE} AS build
+FROM ${BASE_IMAGE} AS build
 WORKDIR /app
 
 COPY mvnw ./
