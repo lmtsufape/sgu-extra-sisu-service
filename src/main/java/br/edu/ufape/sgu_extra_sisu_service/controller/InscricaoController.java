@@ -14,6 +14,7 @@ import org.springframework.http.HttpStatus;
 
 import org.springframework.web.bind.annotation.*;
 import br.edu.ufape.sgu_extra_sisu_service.controller.request.StatusInscricaoPatchRequest;
+import br.edu.ufape.sgu_extra_sisu_service.controller.response.InscricaoDetalhadaResponse;
 import br.edu.ufape.sgu_extra_sisu_service.controller.response.InscricaoResponse;
 import br.edu.ufape.sgu_extra_sisu_service.fachada.Fachada;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -42,6 +43,12 @@ public class InscricaoController {
     @GetMapping("/{id}")
     public ResponseEntity<InscricaoResponse> buscarPorId(@PathVariable Long id) {
         InscricaoResponse response = fachada.buscarInscricaoExternaPorId(id);
+        return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/{id}/detalhes")
+    public ResponseEntity<InscricaoDetalhadaResponse> buscarDetalhesPorId(@PathVariable Long id) {
+        InscricaoDetalhadaResponse response = fachada.buscarDetalhesInscricaoExterna(id);
         return ResponseEntity.ok(response);
     }
 

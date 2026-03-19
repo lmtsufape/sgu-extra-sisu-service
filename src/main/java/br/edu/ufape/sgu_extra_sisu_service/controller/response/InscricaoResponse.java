@@ -15,6 +15,7 @@ public class InscricaoResponse {
     private Long id;
     private UUID idUsuario;
     private LocalDateTime dataInscricao;
+    private EditalResponse edital;
     private StatusPersonalizadoResponse statusAtual;
     private List<DocumentoResponse> documentos;
 

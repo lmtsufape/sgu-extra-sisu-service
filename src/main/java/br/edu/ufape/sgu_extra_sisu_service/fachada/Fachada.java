@@ -25,6 +25,10 @@ import br.edu.ufape.sgu_extra_sisu_service.controller.response.PageResponse;
 import br.edu.ufape.sgu_extra_sisu_service.controller.response.StatusPersonalizadoResponse;
 import br.edu.ufape.sgu_extra_sisu_service.controller.response.ValorCampoResponse;
 import br.edu.ufape.sgu_extra_sisu_service.model.EditalExtraSisu;
+import br.edu.ufape.sgu_extra_sisu_service.service.interfaces.EditalInscricaoHandler;
+import br.edu.ufape.sgu_extra_sisu_service.service.interfaces.EditalAdminHandler;
+import br.edu.ufape.sgu_extra_sisu_service.service.interfaces.StatusPersonalizadoHandler;
+import br.edu.ufape.sgu_extra_sisu_service.service.interfaces.ValorCampoHandler;
 import lombok.RequiredArgsConstructor;
 
 @Component
@@ -33,6 +37,7 @@ public class Fachada {
 
 
     private final EditalExtraSisuService extraSisuService;
+    private final EditalAdminHandler editalAdminHandler;
     private final EditalInscricaoHandler editalInscricaoHandler;
     private final StatusPersonalizadoHandler statusPersonalizadoHandler;
     private final ValorCampoHandler valorCampoHandler;
@@ -78,6 +83,26 @@ public class Fachada {
         extraSisuService.deletar(id);
     }
 
+    public AdminEditalDetalhadoResponse buscarEditalAdminPorId(Long id) {
+        return editalAdminHandler.buscarEditalComEtapas(id);
+    }
+
+    public EditalResponse editarEditalAdmin(Long id, AdminEditalRequest request) {
+        return editalAdminHandler.editarEdital(id, request);
+    }
+
+    public void deletarEditalAdmin(Long id) {
+        editalAdminHandler.deletarEdital(id);
+    }
+
+    public EtapaResponse editarEtapaAdmin(Long id, EtapaAdminRequest request) {
+        return editalAdminHandler.editarEtapa(id, request);
+    }
+
+    public void deletarEtapaAdmin(Long id) {
+        editalAdminHandler.deletarEtapa(id);
+    }
+
 
     // =================== Inscrição ===================
 
@@ -91,6 +116,10 @@ public class Fachada {
 
     public InscricaoResponse buscarInscricaoExternaPorId(Long idInscricao) {
         return editalInscricaoHandler.buscarInscricaoPorId(idInscricao);
+    }
+
+    public InscricaoDetalhadaResponse buscarDetalhesInscricaoExterna(Long idInscricao) {
+        return editalAdminHandler.buscarDetalhesInscricao(idInscricao);
     }
 
     public InscricaoResponse atualizarStatusInscricaoExterna(Long idInscricao, Long idNovoStatus, String observacao) {
@@ -204,6 +233,7 @@ public class Fachada {
     public PageResponse<HistoricoEtapaInscricaoResponse> listarHistoricosExternos() {
         return editalHistoricoEtapaHandler.listar();
     }
+
 
     // =================== Isenção ===================
     public Isencao salvarIsencao(Long usuarioId, IsencaoRequest request) {

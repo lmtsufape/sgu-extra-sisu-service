@@ -13,8 +13,13 @@ public class EditalResponse {
     private String titulo;
     private String descricao;
     private String pdf;
+    private LocalDateTime dataPublicacao;
+    private LocalDateTime inicioInscricao;
+    private LocalDateTime fimIncricao;
     private LocalDateTime dataInscricao;
     private LocalDateTime dataFinalizacao;
+    private StatusPersonalizadoResponse statusAtual;
+    private TipoEditalResponse tipoEdital;
 
     public EditalResponse(EditalExtraSisu obj) {
         ModelMapper modelMapper = new ModelMapper();
