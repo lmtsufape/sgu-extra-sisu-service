@@ -26,7 +26,9 @@ public class EditalExtraSisuController {
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
     public EditalResponse criarEdital(@RequestBody @Valid EditalRequest novo) {
-        EditalExtraSisu edital = fachada.salvarEditalExtraSisu(novo.toModel());
+        // Passa o request completo para que a Fachada consiga os IDs externos
+        EditalExtraSisu edital = novo.toModel();
+        edital = fachada.salvarEditalExtraSisu(edital);
         return new EditalResponse(edital);
     }
 

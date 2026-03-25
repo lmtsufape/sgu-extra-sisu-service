@@ -1,7 +1,6 @@
 package br.edu.ufape.sgu_extra_sisu_service.fachada;
 
 import br.edu.ufape.sgu_extra_sisu_service.client.EditalExtraSisuServiceClient;
-import br.edu.ufape.sgu_extra_sisu_service.comunicacao.dto.edital.EditalModuloEditaisRequest;
 import br.edu.ufape.sgu_extra_sisu_service.controller.request.*;
 import br.edu.ufape.sgu_extra_sisu_service.controller.response.*;
 import br.edu.ufape.sgu_extra_sisu_service.client.DataEtapaServiceClient;
@@ -56,15 +55,14 @@ public class Fachada {
     private TipoEditalServiceClient tipoEditalServiceClient;
 
     @Autowired
-    private EditalExtraSisuServiceClient editalExtraSisuServiceClient;
+    private EditalExtraSisuService editalExtraSisuService;
 
     @Autowired
     private IsencaoInterface isencaoService;
 
 
-    public EditalExtraSisu salvarEditalExtraSisu(EditalRequest request) {
-        EditalExtraSisu editalModel = request.toModel();
-        return extraSisuService.salvar(editalModel, request.getTipoEditalId());
+    public EditalExtraSisu salvarEditalExtraSisu(EditalExtraSisu edital) {
+        return extraSisuService.salvar(edital);
     }
 
     public EditalExtraSisu buscarEditalExtraSisu(Long id) {

@@ -26,6 +26,9 @@ public class EditalRequest {
     @Size(min = 0, max = 100, message = "A descrição deve ter entre 0 e 100 caracteres")
     private String descricao;
 
+    @NotNull(message = "O ID do Tipo de Edital é obrigatório")
+    private Long tipoEditalId;
+
     public EditalExtraSisu toModel() {
         EditalExtraSisu edital = new EditalExtraSisu();
         edital.setTitulo(this.titulo);
