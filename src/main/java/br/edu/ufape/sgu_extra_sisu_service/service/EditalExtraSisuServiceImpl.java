@@ -1,5 +1,8 @@
 package br.edu.ufape.sgu_extra_sisu_service.service;
 
+import br.edu.ufape.sgu_extra_sisu_service.client.EditalExtraSisuServiceClient;
+import br.edu.ufape.sgu_extra_sisu_service.comunicacao.dto.edital.EditalModuloEditaisRequest;
+import br.edu.ufape.sgu_extra_sisu_service.controller.request.EditalRequest;
 import br.edu.ufape.sgu_extra_sisu_service.model.EditalExtraSisu;
 import br.edu.ufape.sgu_extra_sisu_service.repository.EditalExtraSisuRepository;
 import br.edu.ufape.sgu_extra_sisu_service.service.interfaces.EditalExtraSisuService;
@@ -16,6 +19,8 @@ public class EditalExtraSisuServiceImpl implements EditalExtraSisuService {
 
     private final EditalExtraSisuRepository repository;
 
+    private final EditalExtraSisuServiceClient editalModuloEditaisClient;
+
     @Override
     @Transactional(readOnly = true) 
     public Page<EditalExtraSisu> listarTodos(Predicate filtro, Pageable pageable) {
@@ -30,9 +35,24 @@ public class EditalExtraSisuServiceImpl implements EditalExtraSisuService {
     }
 
     @Override
-    @Transactional 
+    @Transactional
     public EditalExtraSisu salvar(EditalExtraSisu edital) {
-        validarDatas(edital); 
+        validarDatas(edital);
+
+        // 1. Mapeia para o formato do módulo de Editais ANTES de salvar local
+        // para garantir que os dados de integração estão consistentes
+        EditalModuloEditaisRequest integrationRequest = new EditalModuloEditaisRequest();
+        integrationRequest.setTitulo(edital.getTitulo());
+        integrationRequest.setDescricao(edital.getDescricao());
+        integrationRequest.setInicioInscricao(edital.getDataInscricao());
+        integrationRequest.setFimIncricao(edital.getDataFinalizacao());
+        integrationRequest.setIdUnidadeAdministrativa(1L);
+
+        // 2. Tenta salvar no módulo de Editais primeiro
+        // O FeignClientConfig enviará o Token JWT automaticamente agora
+        editalModuloEditaisClient.criarNoModuloEditais(integrationRequest);
+
+        // 3. Se a chamada acima não lançar exceção, salva localmente
         return repository.save(edital);
     }
 
