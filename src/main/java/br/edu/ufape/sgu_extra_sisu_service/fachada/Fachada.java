@@ -1,6 +1,6 @@
 package br.edu.ufape.sgu_extra_sisu_service.fachada;
 
-import br.edu.ufape.sgu_extra_sisu_service.client.EditalExtraSisuServiceClient;
+//import br.edu.ufape.sgu_extra_sisu_service.client.EditalExtraSisuServiceClient;
 import br.edu.ufape.sgu_extra_sisu_service.controller.request.*;
 import br.edu.ufape.sgu_extra_sisu_service.controller.response.*;
 import br.edu.ufape.sgu_extra_sisu_service.client.DataEtapaServiceClient;
