@@ -1,7 +1,8 @@
 package br.edu.ufape.sgu_extra_sisu_service.service;
 
 import br.edu.ufape.sgu_extra_sisu_service.client.EditalExtraSisuServiceClient;
-import br.edu.ufape.sgu_extra_sisu_service.comunicacao.dto.edital.EditalModuloEditaisRequest;
+//import br.edu.ufape.sgu_extra_sisu_service.comunicacao.dto.edital.EditalModuloEditaisRequest;
+import br.edu.ufape.sgu_extra_sisu_service.comunicacao.dto.edital.EditalExtraSisuDTO;
 import br.edu.ufape.sgu_extra_sisu_service.controller.request.EditalRequest;
 import br.edu.ufape.sgu_extra_sisu_service.model.EditalExtraSisu;
 import br.edu.ufape.sgu_extra_sisu_service.repository.EditalExtraSisuRepository;
@@ -41,16 +42,17 @@ public class EditalExtraSisuServiceImpl implements EditalExtraSisuService {
 
         // 1. Mapeia para o formato do módulo de Editais ANTES de salvar local
         // para garantir que os dados de integração estão consistentes
-        EditalModuloEditaisRequest integrationRequest = new EditalModuloEditaisRequest();
+        EditalRequest integrationRequest = new EditalRequest();
         integrationRequest.setTitulo(edital.getTitulo());
         integrationRequest.setDescricao(edital.getDescricao());
-        integrationRequest.setInicioInscricao(edital.getDataInscricao());
-        integrationRequest.setFimIncricao(edital.getDataFinalizacao());
-        integrationRequest.setIdUnidadeAdministrativa(1L);
+        integrationRequest.setDataInscricao(edital.getDataInscricao());
+        integrationRequest.setDataFinalizacao(edital.getDataFinalizacao());
+
+
 
         // 2. Tenta salvar no módulo de Editais primeiro
         // O FeignClientConfig enviará o Token JWT automaticamente agora
-        editalModuloEditaisClient.criarNoModuloEditais(integrationRequest);
+        //editalModuloEditaisClient.criarNoModuloEditais(integrationRequest);
 
         // 3. Se a chamada acima não lançar exceção, salva localmente
         return repository.save(edital);
