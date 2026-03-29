@@ -16,13 +16,14 @@ import br.edu.ufape.sgu_extra_sisu_service.controller.response.ModalidadeRespons
 import br.edu.ufape.sgu_extra_sisu_service.model.Modalidade;
 import br.edu.ufape.sgu_extra_sisu_service.service.ModalidadeService;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/modalidade")
+@RequiredArgsConstructor
 public class ModalidadeController {
 
-    @Autowired
-    private ModalidadeService modalidadeService;
+    private final ModalidadeService modalidadeService;
 
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)

@@ -21,7 +21,6 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class PublicacaoController {
 
-    @Autowired
     private final PublicacaoService service;
 
     @PostMapping
