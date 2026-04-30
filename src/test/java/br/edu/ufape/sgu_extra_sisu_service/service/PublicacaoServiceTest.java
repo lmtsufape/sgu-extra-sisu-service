@@ -14,10 +14,10 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import br.edu.ufape.sgu_extra_sisu_service.features.edital.Publicacao;
+import br.edu.ufape.sgu_extra_sisu_service.features.edital.PublicacaoRepository;
 import br.edu.ufape.sgu_extra_sisu_service.model.EditalExtraSisu;
-import br.edu.ufape.sgu_extra_sisu_service.model.Publicacao;
 import br.edu.ufape.sgu_extra_sisu_service.repository.EditalExtraSisuRepository;
-import br.edu.ufape.sgu_extra_sisu_service.repository.PublicacaoRepository;
 
 @ExtendWith(MockitoExtension.class)
 class PublicacaoServiceTest {
